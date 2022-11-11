@@ -1,3 +1,3 @@
-# Refine example app collection
- - headless
- - mui 
+# Refine example apps collection
+ - [Headless](refineheadlessapp)
+ - [Material UI (MUI)](refinemuiapp)  
