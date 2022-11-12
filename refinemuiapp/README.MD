@@ -235,3 +235,44 @@ To show delete button in edit page, canDelete prop needs to be passed to resourc
         ]} 
     />
 ```
+
+# Authentication
+
+provide a dataProvider to the `<Refine>` component
+```TSX
+    <Refine
+        ...
+        authProvider={authProvider}
+    /> 
+```
+
+the authProvider
+```TSX
+import { AuthProvider } from "@pankod/refine-core";
+
+const authProvider: AuthProvider = {
+    login: () => Promise.resolve(),
+    register: () => Promise.resolve(),
+    forgotPassword: () => Promise.resolve(),
+    updatePassword: () => Promise.resolve(),
+    logout: () => Promise.resolve(),
+    checkAuth: () => Promise.resolve(),
+    checkError: () => Promise.resolve(),
+    getPermissions: () => Promise.resolve(),
+    getUserIdentity: () => Promise.resolve(),
+};
+```
+
+
+A logout button is automatically showed on the `Sider` component of the `Layout` provided by the  `@pankod/refine-mui` package.\
+Alternatively you can implement your own logout flow, manually using `useLogout` that calls the `logout` method from the `authProvider`
+```TSX
+    const { mutate: logout } = useLogout();
+    //somewhere in the layout
+    <a onClick={() => logout()}>Logout</a>  
+```
+
+# Customize an existing layout
+```TSX
+    //coming soon
+```

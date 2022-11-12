@@ -16,6 +16,8 @@ import {
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 import { PostCreate, PostEdit, PostList, PostShow } from "pages/posts";
+import { authProvider } from "providers/authprovider";
+import { Login } from "components/authorization/Login";
 
 
 function App() {
@@ -26,6 +28,7 @@ function App() {
       <RefineSnackbarProvider>
         <Refine
           notificationProvider={notificationProvider}
+          authProvider={authProvider}
           Layout={Layout}
           ReadyPage={ReadyPage}
           catchAll={<ErrorComponent />}
@@ -41,6 +44,7 @@ function App() {
               canDelete: true
             },
           ]}
+          LoginPage={Login}
         />
       </RefineSnackbarProvider>
     </ThemeProvider>
