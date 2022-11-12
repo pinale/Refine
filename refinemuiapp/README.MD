@@ -39,7 +39,7 @@ To learn more about **refine**, please check out the [Documentation](https://ref
 - **React Router** [Docs](https://refine.dev/docs/core/providers/router-provider/)
 - **REST Data Provider** [Docs](https://refine.dev/docs/core/providers/data-provider/#overview)
 
-
+\
 # Related Resources
 ```TSX
     import { GridColumns,List, useDataGrid, useMany } from "@pankod/refine-core";
@@ -89,12 +89,14 @@ To learn more about **refine**, please check out the [Documentation](https://ref
 
 ```
 
+
 # Search and filtering
 Enabled by default thanks to the `useDataGrid` hook
 [more info about useDataGrid -> https://refine.dev/docs/api-reference/mui/hooks/useDataGrid/#sorting](https://refine.dev/docs/api-reference/mui/hooks/useDataGrid/#sorting)
 ```TSX
     //coming soon
 ```
+
 
 # Show a single entity/detail page
 `useShow()` is the hook to use for fetching data from the **current resource**.\
@@ -124,3 +126,62 @@ then add a show button to the list component
 ```
 [more info about useShow() hook -> https://refine.dev/docs/api-reference/core/hooks/show/useShow/](https://refine.dev/docs/api-reference/core/hooks/show/useShow/)\
 [more info about Show component-> https://refine.dev/docs/api-reference/mui/components/basic-views/show/](https://refine.dev/docs/api-reference/mui/components/basic-views/show/)
+
+
+# Edit a record
+`@pankod/refine-react-hook-form` + React Hook Form + MUI = ♥
+
+```TSX
+    //coming soon
+```
+
+then add an edit button to the list component
+```TSX
+
+import {
+    GridColumns,
+    TagField,
+    DateField,
+    ShowButton,
+    Stack,
+    EditButton,
+} from "@pankod/refine-mui";
+const columns = React.useMemo<GridColumns<IPost>>(
+        () => [
+            ...
+            {
+                field: "status",
+                headerName: "Status",
+                minWidth: 150,
+                flex: 1,
+                renderCell: function render(params) {
+                    return <TagField value={params.row.status} />;
+                },
+            },
+            {
+                field: "createdAt",
+                headerName: "CreatedAt",
+                minWidth: 220,
+                renderCell: function render(params) {
+                    return (
+                        <DateField format="LLL" value={params.row.createdAt} />
+                    );
+                },
+            },
+            {
+                headerName: "Actions",
+                field: "actions",
+                minWidth: 250,
+                renderCell: function render(params) {
+                    return (
+                        <Stack direction="row" spacing={1}>
+                            <EditButton hideText recordItemId={params.row.id} />
+                            <ShowButton hideText recordItemId={params.row.id} />
+                        </Stack>
+                    );
+                },
+            },
+        ],
+        [categoriesData, isLoading],
+```
+[more info about `<EditButton>` --> https://refine.dev/docs/api-reference/mui/components/buttons/edit-button/](https://refine.dev/docs/api-reference/mui/components/buttons/edit-button/)

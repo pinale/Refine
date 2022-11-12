@@ -8,6 +8,8 @@ import {
     DateField,
     List,
     ShowButton,
+    Stack,
+    EditButton,
 } from "@pankod/refine-mui";
 
 import { ICategory,IPost } from "interfaces";
@@ -70,7 +72,12 @@ export const PostList: React.FC = () => {
                 field: "actions",
                 minWidth: 250,
                 renderCell: function render(params) {
-                    return <ShowButton hideText recordItemId={params.row.id} />;
+                    return (
+                        <Stack direction="row" spacing={1}>
+                            <EditButton hideText recordItemId={params.row.id} />
+                            <ShowButton hideText recordItemId={params.row.id} />
+                        </Stack>
+                    );
                 },
             },
         ],

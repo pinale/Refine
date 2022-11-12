@@ -15,7 +15,7 @@ import {
 
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
-import { PostList, PostShow } from "pages/posts";
+import { PostEdit, PostList, PostShow } from "pages/posts";
 
 
 function App() {
@@ -35,7 +35,9 @@ function App() {
             {
               name:"posts",
               list: PostList,
-              show: PostShow
+              show: PostShow,
+              edit: PostEdit
+
             },
           ]}
         />
