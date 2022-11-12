@@ -18,6 +18,7 @@ import dataProvider from "@pankod/refine-simple-rest";
 import { PostCreate, PostEdit, PostList, PostShow } from "pages/posts";
 import { authProvider } from "providers/authprovider";
 import { Login } from "components/authorization/Login";
+import { MyCustomHeader } from "components/layout/mycustomheader";
 
 
 function App() {
@@ -44,6 +45,7 @@ function App() {
               canDelete: true
             },
           ]}
+          Header={MyCustomHeader}
           LoginPage={Login}
         />
       </RefineSnackbarProvider>
