@@ -15,6 +15,8 @@ import {
 
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
+import { PostList, PostShow } from "pages/posts";
+
 
 function App() {
   return (
@@ -29,6 +31,13 @@ function App() {
           catchAll={<ErrorComponent />}
           routerProvider={routerProvider}
           dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+          resources={[
+            {
+              name:"posts",
+              list: PostList,
+              show: PostShow
+            },
+          ]}
         />
       </RefineSnackbarProvider>
     </ThemeProvider>

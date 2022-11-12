@@ -2,6 +2,13 @@
 An example refine app in headless mode:
 
 
+```SH
+npx create-react-app refineheadlessapp --template typescript
+npm i @pankod/refine-core @pankod/refine-react-router-v6
+npm i @pankod/refine-simple-rest
+npm run dev
+```
+
 # Page customization
 append routes to the routerProvider props  
 ```TSX
