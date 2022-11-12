@@ -132,7 +132,7 @@ then add a show button to the list component
 `@pankod/refine-react-hook-form` + React Hook Form + MUI = ♥
 
 ```TSX
-    //coming soon
+    <Edit isLoading={formLoading} saveButtonProps={saveButtonProps}>
 ```
 
 then add an edit button to the list component
@@ -185,3 +185,53 @@ const columns = React.useMemo<GridColumns<IPost>>(
         [categoriesData, isLoading],
 ```
 [more info about `<EditButton>` --> https://refine.dev/docs/api-reference/mui/components/buttons/edit-button/](https://refine.dev/docs/api-reference/mui/components/buttons/edit-button/)
+
+
+
+# Create a record
+
+```TSX
+<Create isLoading={formLoading} saveButtonProps={saveButtonProps}>
+```
+Save button is provided by the `<Create>` component submits the form executing the `useCreate` method provided by the `dataProvider`,\
+the **create** button is provided from the `<List>` component
+
+
+# Delete a record
+two possibilities:
+1) add a delete button to the list component
+```TSX
+    const columns = ...
+            ...
+            {
+                headerName: "Actions",
+                field: "actions",
+                minWidth: 250,
+                renderCell: function render(params) {
+                    return (
+                        <Stack direction="row" spacing={1}>
+                            <EditButton hideText recordItemId={params.row.id} />
+                            <ShowButton hideText recordItemId={params.row.id} />
+                            <DeleteButton hideText recordItemId={params.row.id} />
+                        </Stack>
+                    );
+                },
+            },
+```
+2) showing delete button in <PostEdit> component\
+To show delete button in edit page, canDelete prop needs to be passed to resource object
+```TSX
+    <Refine
+        ...
+        resources={[
+            {
+                name:"posts",
+                list: PostList,
+                show: PostShow,
+                edit: PostEdit,
+                create: PostCreate,
+                canDelete: true
+            },
+        ]} 
+    />
+```

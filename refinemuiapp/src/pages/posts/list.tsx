@@ -10,6 +10,7 @@ import {
     ShowButton,
     Stack,
     EditButton,
+    DeleteButton,
 } from "@pankod/refine-mui";
 
 import { ICategory,IPost } from "interfaces";
@@ -76,6 +77,7 @@ export const PostList: React.FC = () => {
                         <Stack direction="row" spacing={1}>
                             <EditButton hideText recordItemId={params.row.id} />
                             <ShowButton hideText recordItemId={params.row.id} />
+                            <DeleteButton hideText recordItemId={params.row.id} />
                         </Stack>
                     );
                 },
