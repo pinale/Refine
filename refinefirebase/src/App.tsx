@@ -19,6 +19,7 @@ import { PostCreate, PostEdit, PostList, PostShow } from "pages/posts";
 import { authProvider } from "providers/authprovider";
 import { Login } from "components/authorization/Login";
 import { MyCustomHeader } from "components/layout/mycustomheader";
+import Dashboard from "pages/dashboard/Dashboard";
 
 
 function App() {
@@ -47,6 +48,7 @@ function App() {
           ]}
           Header={MyCustomHeader}
           LoginPage={Login}
+          DashboardPage={Dashboard}
         />
       </RefineSnackbarProvider>
     </ThemeProvider>
