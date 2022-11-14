@@ -4,8 +4,10 @@ import { DashboardPageProps } from '@pankod/refine-core/dist/interfaces';
 import { Box, Button, Card, CardContent, CardHeader, Typography } from '@pankod/refine-mui';
 import React from 'react'
 
+
 export const  Dashboard :React.FC<DashboardPageProps> = ({initialData}) =>  {
     
+
     return (
         <Card>
             <CardHeader

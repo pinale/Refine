@@ -14,13 +14,15 @@ import {
 } from "@pankod/refine-mui";
 
 import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
 import { PostCreate, PostEdit, PostList, PostShow } from "pages/posts";
 import { authProvider } from "providers/authprovider";
 import { Login } from "components/authorization/Login";
 import { MyCustomHeader } from "components/layout/mycustomheader";
 import Dashboard from "pages/dashboard/Dashboard";
 
+//import dataProvider from "@pankod/refine-simple-rest";
+import { firebaseDatabase } from "./firebase";
+const { getDataProvider } = firebaseDatabase;
 
 function App() {
   return (
@@ -30,12 +32,13 @@ function App() {
       <RefineSnackbarProvider>
         <Refine
           notificationProvider={notificationProvider}
-          authProvider={authProvider}
+          //authProvider={authProvider}
           Layout={Layout}
           ReadyPage={ReadyPage}
           catchAll={<ErrorComponent />}
           routerProvider={routerProvider}
-          dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+          //dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+          dataProvider={getDataProvider()}
           resources={[
             {
               name:"posts",
@@ -47,7 +50,7 @@ function App() {
             },
           ]}
           Header={MyCustomHeader}
-          LoginPage={Login}
+          //LoginPage={Login}
           DashboardPage={Dashboard}
         />
       </RefineSnackbarProvider>
