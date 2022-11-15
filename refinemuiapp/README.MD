@@ -391,7 +391,7 @@ export const Layout: React.FC<RefineLayoutLayoutProps> = ({
 `useList` performs an operation at row level with the advantage to cache results thanks to `react query`
 
 ```TSX
-xport const CategoriesList: React.FC = () => {
+export const CategoriesList: React.FC = () => {
     const { dataGridProps } = useDataGrid<ICategory>();
 
     const { data: allPosts, isLoading } = useList({
