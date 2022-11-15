@@ -2,4 +2,4 @@ tasks:
   - name: reactstun
     before: cd reactstun
     init: npm install
-    command: npm run dev
+    command: npm run start
