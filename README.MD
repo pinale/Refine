@@ -8,6 +8,8 @@
 
 ## GitPod
  https://www.gitpod.io/guides/gitpodify
+ https://www.gitpod.io/docs/references/gitpod-yml
+ 
  [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/pinale/Refine/tree/master/reactstun)
  
 ## Stackblitz
