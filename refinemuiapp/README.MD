@@ -391,6 +391,64 @@ export const Layout: React.FC<RefineLayoutLayoutProps> = ({
 `useList` performs an operation at row level with the advantage to cache results thanks to `react query`
 
 ```TSX
+xport const CategoriesList: React.FC = () => {
+    const { dataGridProps } = useDataGrid<ICategory>();
+
+    const { data: allPosts, isLoading } = useList({
+        resource: 'posts',
+        config: {
+          hasPagination: false,
+        },
+      });
+
+    const columns = React.useMemo<GridColumns<ICategory>>(
+        () => [
+            ...
+            {
+                field: "count",
+                headerName: "N° Posts",
+                type: "number",
+                width: 100,
+                flex: 1,
+                renderCell: function render({ row }) {
+                     
+                      if (isLoading) {
+                        return 'Loading...';
+                      }
+                      
+                      const filteredPosts = allPosts?.data?.filter(
+                        (post) => post.category.id === row.id
+                      );
+
+                      return <TagField value={filteredPosts?.length} />; 
+                },
+            },
+            ...
+        ],
+        [allPosts, isLoading]
+    );
+
+    return (
+        <List>
+            <DataGrid 
+            {...dataGridProps} 
+            columns={columns} 
+            autoHeight 
+            rowsPerPageOptions={[10, 20, 30, 50, 100]}
+            />
+        </List>
+    );
+};
+```
+
+
+
+
+### PAY ATTENTION, EVEN THOUGH THE CODE BELOW IS LEGIT, IT IS HIGHLY DISCOURAGED
+It isn't a best practice to use an hook inside other react utilities and the compiler complain about that
+*note the line `// eslint-disable-next-line react-hooks/rules-of-hooks` (just above the problematic line) to disable the error message*
+
+```TSX
 export const CategoriesList: React.FC = () => {
     const { dataGridProps } = useDataGrid<ICategory>();
 
