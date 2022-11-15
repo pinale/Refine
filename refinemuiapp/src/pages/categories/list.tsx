@@ -21,8 +21,6 @@ export const CategoriesList: React.FC = () => {
 
     const categorieIds = dataGridProps.rows.map((item) => item.id);
 
-    console.log("categorieIds",categorieIds);
-
     const { data: postsData, isLoading } = useMany<IPost>({
         resource: "posts",
         ids: categorieIds,
