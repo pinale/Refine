@@ -3,3 +3,18 @@ tasks:
     before: cd reactstun
     init: npm install
     command: npm run start
+  
+  - name: refinefirebase
+    before: cd refinefirebase
+    init: npm install
+    command: npm run dev
+  
+  - name: refineheadlessapp
+    before: cd refineheadlessapp
+    init: npm install
+    command: npm run dev
+
+  - name: refinemuiapp
+    before: cd refinemuiapp
+    init: npm install
+    command: npm run dev
