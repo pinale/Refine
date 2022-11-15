@@ -3,6 +3,6 @@ tasks:
     before: |
       cd reactstun
     init: | 
-      echo npm install
+      npm install
     command: |
-      echo npm run dev
+      npm run dev
