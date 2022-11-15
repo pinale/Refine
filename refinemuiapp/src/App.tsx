@@ -19,6 +19,7 @@ import { PostCreate, PostEdit, PostList, PostShow } from "pages/posts";
 import { authProvider } from "providers/authprovider";
 import { Login } from "components/authorization/Login";
 import { MyCustomHeader } from "components/layout/mycustomheader";
+import { CategoriesList } from "pages/categories/list";
 
 
 function App() {
@@ -43,6 +44,14 @@ function App() {
               edit: PostEdit,
               create: PostCreate,
               canDelete: true
+            },
+            {
+              name:"categories",
+              list: CategoriesList,
+              //show: PostShow,
+              //edit: PostEdit,
+              //create: PostCreate,
+              //canDelete: true
             },
           ]}
           Header={MyCustomHeader}

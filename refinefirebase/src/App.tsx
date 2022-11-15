@@ -38,7 +38,7 @@ function App() {
           catchAll={<ErrorComponent />}
           routerProvider={routerProvider}
           //dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-          dataProvider={firestoreDatabase.getDataProvider()}
+          dataProvider={firestoreDatabase}
           resources={[
             {
               name:"posts",
