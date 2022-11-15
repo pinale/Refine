@@ -46,10 +46,8 @@ export const CategoriesList: React.FC = () => {
                       if (isLoading) {
                         return ('Loading...');
                       }
-                                       
-                      return data?.total;
-                      //return (<TagField value={data?.total} />); 
-                    
+                      
+                      return (<TagField value={data?.total} />); 
                 },
             },
             {
