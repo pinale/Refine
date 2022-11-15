@@ -18,36 +18,36 @@ import { ICategory, IPost } from "interfaces";
 export const CategoriesList: React.FC = () => {
     const { dataGridProps } = useDataGrid<ICategory>();
 
+
+    const { data: allPosts, isLoading } = useList({
+        resource: 'posts',
+        config: {
+          hasPagination: false,
+        },
+      });
+
+
     const columns = React.useMemo<GridColumns<ICategory>>(
         () => [
             { field: "id", headerName: "Id", flex: 1, minWidth: 350 },
             { field: "title", headerName: "Title", flex: 1, minWidth: 500 },
             {
-                field: "post.id",
+                field: "count",
                 headerName: "N° Posts",
                 type: "number",
-                minWidth: 250,
+                width: 100,
                 flex: 1,
                 renderCell: function render({ row }) {
-                     //eslint-disable-next-line react-hooks/rules-of-hooks
-                    const { data, isLoading } = useList<IPost>({    // <-- is possible to use the generic useList() versio as well
-                        resource: 'posts',
-                        config: {
-                          filters: [
-                            {
-                              operator: 'eq',
-                              field: 'category.id',
-                              value: row.id,
-                            },
-                          ],
-                        },
-                      });
-            
+                     
                       if (isLoading) {
                         return 'Loading...';
                       }
                       
-                      return <TagField value={data?.total} />; 
+                      const filteredPosts = allPosts?.data?.filter(
+                        (post) => post.category.id === row.id
+                      );
+
+                      return <TagField value={filteredPosts?.length} />; 
                 },
             },
             {
@@ -65,7 +65,7 @@ export const CategoriesList: React.FC = () => {
                 },
             },
         ],
-        []
+        [allPosts, isLoading]
     );
     
 
