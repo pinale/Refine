@@ -385,3 +385,45 @@ export const Layout: React.FC<RefineLayoutLayoutProps> = ({
     );
 };
 ```
+
+
+# Count, aggregate or perform a funtion on each record in a column
+`useList` performs an operation at row level with the advantage to cache results thanks to `react query`
+
+```TSX
+export const CategoriesList: React.FC = () => {
+    const { dataGridProps } = useDataGrid<ICategory>();
+
+    const columns = React.useMemo<GridColumns<ICategory>>(
+        () => [
+            ...
+            {
+                field: "post.id",
+                headerName: "N° Posts",
+                type: "number",
+                minWidth: 250,
+                flex: 1,
+                renderCell: function render({ row }) {
+                    // eslint-disable-next-line react-hooks/rules-of-hooks    <--eventually, if the compiler complains about it
+                    const { data, isLoading } = useList<IPost>({    //is possible to use the generic useList() versio as well
+                        resource: 'posts',
+                        config: {
+                          filters: [
+                            {
+                              operator: 'eq',
+                              field: 'category.id',
+                              value: row.id,
+                            },
+                          ],
+                        },
+                      });
+            
+                      if (isLoading) {
+                        return 'Loading...';
+                      }
+                      
+                      return data?.total; 
+                },
+                ...
+            },
+```

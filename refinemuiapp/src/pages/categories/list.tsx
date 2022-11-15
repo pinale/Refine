@@ -29,8 +29,8 @@ export const CategoriesList: React.FC = () => {
                 minWidth: 250,
                 flex: 1,
                 renderCell: function render({ row }) {
-                    // eslint-disable-next-line react-hooks/rules-of-hooks
-                    const { data, isLoading } = useList({
+                     //eslint-disable-next-line react-hooks/rules-of-hooks
+                    const { data, isLoading } = useList<IPost>({    // <-- is possible to use the generic useList() versio as well
                         resource: 'posts',
                         config: {
                           filters: [
@@ -44,10 +44,10 @@ export const CategoriesList: React.FC = () => {
                       });
             
                       if (isLoading) {
-                        return ('Loading...');
+                        return 'Loading...';
                       }
                       
-                      return (<TagField value={data?.total} />); 
+                      return <TagField value={data?.total} />; 
                 },
             },
             {
