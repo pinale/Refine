@@ -1,11 +1,10 @@
 import React from "react";
-import { useMany } from "@pankod/refine-core";
+import { useList } from "@pankod/refine-core";
 import {
     useDataGrid,
     DataGrid,
     GridColumns,
     TagField,
-    DateField,
     List,
     ShowButton,
     Stack,
@@ -13,23 +12,13 @@ import {
     DeleteButton,
 } from "@pankod/refine-mui";
 
-import { ICategory,IPost } from "interfaces";
+import { ICategory, IPost } from "interfaces";
 
 
 export const CategoriesList: React.FC = () => {
     const { dataGridProps } = useDataGrid<ICategory>();
 
-    const categorieIds = dataGridProps.rows.map((item) => item.id);
-
-    const { data: postsData, isLoading } = useMany<IPost>({
-        resource: "posts",
-        ids: categorieIds,
-        queryOptions: {
-            enabled: categorieIds.length > 0,
-        },
-    });
-
-    const columns = React.useMemo<GridColumns<IPost>>(
+    const columns = React.useMemo<GridColumns<ICategory>>(
         () => [
             { field: "id", headerName: "Id", flex: 1, minWidth: 350 },
             { field: "title", headerName: "Title", flex: 1, minWidth: 500 },
@@ -40,16 +29,27 @@ export const CategoriesList: React.FC = () => {
                 minWidth: 250,
                 flex: 1,
                 renderCell: function render({ row }) {
-                    if (isLoading) {
-                        return "Loading...";
-                    }
-
-                    //TODO: Create count function, this is wrong
-                    const category = postsData?.data.find(
-                        (item) => item.category.id === row.id,
-                    );
+                    // eslint-disable-next-line react-hooks/rules-of-hooks
+                    const { data, isLoading } = useList({
+                        resource: 'posts',
+                        config: {
+                          filters: [
+                            {
+                              operator: 'eq',
+                              field: 'category.id',
+                              value: row.id,
+                            },
+                          ],
+                        },
+                      });
+            
+                      if (isLoading) {
+                        return ('Loading...');
+                      }
+                                       
+                      return data?.total;
+                      //return (<TagField value={data?.total} />); 
                     
-                    return <TagField value={postsData?.data.length} />; 
                 },
             },
             {
@@ -67,13 +67,18 @@ export const CategoriesList: React.FC = () => {
                 },
             },
         ],
-        [postsData, isLoading],
+        []
     );
     
 
     return (
         <List>
-            <DataGrid {...dataGridProps} columns={columns} autoHeight />
+            <DataGrid 
+            {...dataGridProps} 
+            columns={columns} 
+            autoHeight 
+            rowsPerPageOptions={[10, 20, 30, 50, 100]}
+            />
         </List>
     );
 };
