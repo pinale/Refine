@@ -21,8 +21,8 @@ import { MyCustomHeader } from "components/layout/mycustomheader";
 import Dashboard from "pages/dashboard/Dashboard";
 
 //import dataProvider from "@pankod/refine-simple-rest";
-import { firebaseDatabase } from "./firebase";
-const { getDataProvider } = firebaseDatabase;
+import { firestoreDatabase } from "./firebase";
+
 
 function App() {
   return (
@@ -38,7 +38,7 @@ function App() {
           catchAll={<ErrorComponent />}
           routerProvider={routerProvider}
           //dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-          dataProvider={getDataProvider()}
+          dataProvider={firestoreDatabase.getDataProvider()}
           resources={[
             {
               name:"posts",
