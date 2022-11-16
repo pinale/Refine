@@ -20,6 +20,8 @@ import { authProvider } from "providers/authprovider";
 import { Login } from "components/authorization/Login";
 import { MyCustomHeader } from "components/layout/mycustomheader";
 import { CategoriesList } from "pages/categories/list";
+import { CustomPage1 } from "pages/custom/custompage1";
+import { CustomPage2 } from "pages/custom/custompage2";
 
 
 function App() {
@@ -34,7 +36,21 @@ function App() {
           Layout={Layout}
           ReadyPage={ReadyPage}
           catchAll={<ErrorComponent />}
-          routerProvider={routerProvider}
+          routerProvider={{
+            ...routerProvider,
+            routes: [
+              {
+                path: '/custompage1',
+                Element: <CustomPage1 />,
+                layout: true
+              },
+              {
+                path: '/custompage2',
+                Element: <CustomPage2 />,
+                layout: true
+              }
+            ]
+          }}
           dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
           resources={[
             {

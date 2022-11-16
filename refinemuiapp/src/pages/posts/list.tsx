@@ -15,8 +15,14 @@ import {
 
 import { ICategory,IPost } from "interfaces";
 
+import routerProvider from "@pankod/refine-react-router-v6";
+const { useParams, Link } = routerProvider;
 
 export const PostList: React.FC = () => {
+
+    const params = useParams();
+    console.log("PASSED PARAMETERS", params);
+
     const { dataGridProps } = useDataGrid<IPost>();
 
     const categoryIds = dataGridProps.rows.map((item) => item.category.id);

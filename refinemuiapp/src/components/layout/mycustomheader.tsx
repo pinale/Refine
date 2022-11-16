@@ -1,10 +1,13 @@
+//copied from @pankod\refine-mui\src\components\layout\header\index.tsx and customized
+
 import React from "react";
 import { RefineLayoutHeaderProps } from "@pankod/refine-ui-types";
 import { useGetIdentity, useLogout } from "@pankod/refine-core";
 import { AppBar, Stack, Toolbar, Typography, Avatar } from "@mui/material";
-import { Link } from "@pankod/refine-mui";
+import { Link as MUILink} from "@pankod/refine-mui";
 
-//copied from @pankod\refine-mui\src\components\layout\header\index.tsx and customized
+import routerProvider from "@pankod/refine-react-router-v6";
+const { Link } = routerProvider;
 
 export const MyCustomHeader: React.FC<RefineLayoutHeaderProps> = () => {
     const { data: user } = useGetIdentity();
@@ -18,9 +21,18 @@ export const MyCustomHeader: React.FC<RefineLayoutHeaderProps> = () => {
                 <Stack
                     direction="row"
                     width="100%"
-                    justifyContent="flex-end"
+                    justifyContent="space-between"
                     alignItems="center"
                 >
+                    <Stack
+                        direction="row"
+                        gap="16px"
+                        alignItems="center"
+                        justifyContent="center"
+                    >  
+                        <Link to="/custompage1">Custom Page 1</Link>  
+                        <Link to="/custompage2">Custom Page 2</Link>  
+                    </Stack>
                     <Stack
                         direction="row"
                         gap="16px"
@@ -31,7 +43,7 @@ export const MyCustomHeader: React.FC<RefineLayoutHeaderProps> = () => {
                             {user?.name}
                         </Typography>
                         <Avatar src={user?.avatar} alt={user?.name} />
-                        <Link href="" onClick={() => logout()}>Logout</Link>  
+                        <MUILink onClick={() => logout()}>Logout</MUILink>  
                     </Stack>
                 </Stack>
             </Toolbar>

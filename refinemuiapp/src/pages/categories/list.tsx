@@ -15,6 +15,10 @@ import {
 import { ICategory, IPost } from "interfaces";
 
 
+
+import routerProvider from "@pankod/refine-react-router-v6";
+const { Link } = routerProvider;
+
 export const CategoriesList: React.FC = () => {
     const { dataGridProps } = useDataGrid<ICategory>();
 
@@ -39,15 +43,19 @@ export const CategoriesList: React.FC = () => {
                 flex: 1,
                 renderCell: function render({ row }) {
                      
-                      if (isLoading) {
-                        return 'Loading...';
-                      }
-                      
-                      const filteredPosts = allPosts?.data?.filter(
-                        (post) => post.category.id === row.id
-                      );
+                    if (isLoading) {
+                    return 'Loading...';
+                    }
+                    
+                    const filteredPosts = allPosts?.data?.filter(
+                    (post) => post.category.id === row.id
+                    );
 
-                      return <TagField value={filteredPosts?.length} />; 
+                    return (
+                        <Link to={`/posts/${row.id}`}>
+                            <TagField value={filteredPosts?.length} />
+                        </Link>
+                    ); 
                 },
             },
             {
