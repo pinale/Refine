@@ -56,6 +56,64 @@ export const firebaseDatabase = new FirebaseDatabase();
 
 
 
+# Manipulate data before save
+Some tips to manipulate data before save (before call the `createData` method of the dataProvider)
+
+The `<Edit>` component has a `saveButtonProps` that you can use to get the `onClick` handler
+```
+saveButtonProps: {
+      disabled: boolean;
+      onClick: (e: React.BaseSyntheticEvent) => void;
+}; 
+```
+then use the `handleSubmit` provided by `useForm` to get the form data, modifing it if needed and call `onFinish` manually\
+`onFinish <-- refineCore <-- useForm`
+
+```TSX
+export const PostEdit: React.FC = () => {
+    const {
+        refineCore: { formLoading, queryResult, onFinish, id },  //<-- onFinish and id 
+        saveButtonProps,
+        register,
+        control,
+        formState: { errors },
+        handleSubmit   //<-- handleSubmit
+    } = useForm<IPost, HttpError, IPost & { category: ICategory }>();
+
+    const { autocompleteProps } = useAutocomplete<ICategory>({
+        resource: "categories",
+        defaultValue: queryResult?.data?.data.category.id,
+        queryOptions: { enabled: !!queryResult?.data?.data.category },
+    });
+
+    const extendedSaveButtonProps = {
+        ...saveButtonProps,
+        onClick: (e: React.BaseSyntheticEvent<object, any,any>) => {
+            handleSubmit(
+                (values) => {
+                    //manupulate data according your need and call onFinish;
+                    //EG. added id because n the form is not passed
+                    const post: IPost = {
+                        ...values,
+                        id: id as string    //<-- id added because the form doesn't contain an id field (hidden or visible)
+                    }
+
+                    onFinish(post);   //<-- this call the `createData` method of the dataProvider
+                    // onFinish({
+                    //     ...values,
+                    // });
+                },
+                () => false
+            )(e);
+        }
+    }
+
+    return (
+        //<Edit isLoading={formLoading} saveButtonProps={saveButtonProps} >
+        <Edit isLoading={formLoading} saveButtonProps={extendedSaveButtonProps} >
+```
+
+
 
 some materials to use:
 
