@@ -1,11 +1,16 @@
+// import { 
+//     initializeFirebase,
+//     FirebaseAuth,
+//     FirebaseDatabase,
+//     FirestoreDatabase,    
+// } from 'refine-firebase/lib';
+
 import { 
-    initializeFirebase,
-    FirebaseAuth,
-    FirebaseDatabase,
-    FirestoreDatabase,    
-} from 'refine-firebase/lib';
-
-
+  initializeFirebase,
+  FirebaseAuth,
+  FirebaseDatabase,
+  FirestoreDatabase,
+} from './refine-firebase-dataprovider/src';
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,

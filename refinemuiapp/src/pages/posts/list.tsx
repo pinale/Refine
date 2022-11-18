@@ -21,8 +21,6 @@ const { useParams, Link } = routerProvider;
 export const PostList: React.FC = () => {
 
     const params = useParams();
-    console.log("PASSED PARAMETERS", params);
-
     const { dataGridProps } = useDataGrid<IPost>();
 
     const categoryIds = dataGridProps.rows.map((item) => item.category.id);
@@ -91,7 +89,6 @@ export const PostList: React.FC = () => {
         ],
         [categoriesData, isLoading],
     );
-    
 
     return (
         <List>

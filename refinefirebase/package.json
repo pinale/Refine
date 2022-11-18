@@ -16,7 +16,6 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "^5.0.0",
-    "refine-firebase": "^1.0.28",
     "web-vitals": "^1.1.1"
   },
   "devDependencies": {

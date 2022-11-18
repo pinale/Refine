@@ -1,0 +1,81 @@
+{
+  "categories": {
+    "b0925c18-a201-4b67-a15c-11352195c696": {
+      "id": "b0925c18-a201-4b67-a15c-11352195c696",
+      "title": "sport"
+    },
+    "b0925c18-a201-4b67-a15c-11352195c697": {
+      "id": "b0925c18-a201-4b67-a15c-11352195c697",
+      "title": "news"
+    },
+    "b0925c18-a201-4b67-a15c-11352195c698": {
+      "id": "b0925c18-a201-4b67-a15c-11352195c698",
+      "title": "shop"
+    }
+  },
+  "posts": {
+    "66cf14e6-9154-49dc-b769-977a2806463c": {
+      "category": {
+        "id": "b0925c18-a201-4b67-a15c-11352195c698",
+        "title": "shop"
+      },
+      "id": "66cf14e6-9154-49dc-b769-977a2806463c",
+      "status": "rejected",
+      "title": "definitivo"
+    },
+    "8fb971ca-0330-4c2b-a0c6-14f92debc20c": {
+      "category": {
+        "id": "b0925c18-a201-4b67-a15c-11352195c696",
+        "title": "sport"
+      },
+      "id": "8fb971ca-0330-4c2b-a0c6-14f92debc20c",
+      "status": "published",
+      "title": "con interfaccia"
+    },
+    "94540942-0af8-46e7-92cd-50ad2bc12fd0": {
+      "category": {
+        "id": "b0925c18-a201-4b67-a15c-11352195c698",
+        "title": "shop"
+      },
+      "id": "d336463e-0899-4312-902c-d0577eed02ez",
+      "status": "published",
+      "title": "oggi"
+    },
+    "acf7b8cb-506a-44cc-8de8-c78a3c849964": {
+      "category": {
+        "id": "b0925c18-a201-4b67-a15c-11352195c698",
+        "title": "shop"
+      },
+      "id": "acf7b8cb-506a-44cc-8de8-c78a3c849964",
+      "status": "draft",
+      "title": "fdsdsfds"
+    },
+    "d336463e-0899-4312-902c-d0577eed02ez": {
+      "category": {
+        "id": "b0925c18-a201-4b67-a15c-11352195c696",
+        "title": "sport"
+      },
+      "id": "d336463e-0899-4312-902c-d0577eed02ez",
+      "status": "published",
+      "title": " oggi xxxxx"
+    },
+    "db7ceaa3-2b35-474d-8fd2-ddf9339bf03b": {
+      "category": {
+        "id": "b0925c18-a201-4b67-a15c-11352195c697",
+        "title": "news"
+      },
+      "id": "db7ceaa3-2b35-474d-8fd2-ddf9339bf03b",
+      "status": "rejected",
+      "title": "sfondo"
+    },
+    "dd56f64f-7bde-49b6-9c40-ee53f0ea2b5b": {
+      "category": {
+        "id": "b0925c18-a201-4b67-a15c-11352195c697",
+        "title": "news"
+      },
+      "id": "dd56f64f-7bde-49b6-9c40-ee53f0ea2b5b",
+      "status": "published",
+      "title": "xxxxxx"
+    }
+  }
+}

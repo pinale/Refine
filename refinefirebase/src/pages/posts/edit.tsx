@@ -12,21 +12,46 @@ import { ICategory, IPost } from "interfaces";
 
 export const PostEdit: React.FC = () => {
     const {
-        refineCore: { formLoading, queryResult },
+        refineCore: { formLoading, queryResult, onFinish, id },  //<--onFinish
         saveButtonProps,
         register,
         control,
         formState: { errors },
+        handleSubmit   //<-- handleSubmit
     } = useForm<IPost, HttpError, IPost & { category: ICategory }>();
 
     const { autocompleteProps } = useAutocomplete<ICategory>({
         resource: "categories",
         defaultValue: queryResult?.data?.data.category.id,
-        queryOptions: { enabled: !!queryResult?.data?.data.category.id },
+        queryOptions: { enabled: !!queryResult?.data?.data.category },
     });
 
+    const extendedSaveButtonProps = {
+        ...saveButtonProps,
+        onClick: (e: React.BaseSyntheticEvent<object, any,any>) => {
+            handleSubmit(
+                (values) => {
+                    //manupulate data according your need and call onFinish;
+                    //EG. added id because n the form is not passed
+                    //const post: IPost & { category: ICategory} = {
+                    const post: IPost = {
+                        ...values,
+                        id: id as string  
+                    }
+
+                    onFinish(post);
+                    // onFinish({
+                    //     ...values,
+                    // });
+                },
+                () => false
+            )(e);
+        }
+    }
+
     return (
-        <Edit isLoading={formLoading} saveButtonProps={saveButtonProps}>
+        //<Edit isLoading={formLoading} saveButtonProps={saveButtonProps} >
+        <Edit isLoading={formLoading} saveButtonProps={extendedSaveButtonProps} >
             <Box
                 component="form"
                 sx={{ display: "flex", flexDirection: "column" }}
