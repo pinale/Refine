@@ -10,7 +10,7 @@ import {
   FirebaseAuth,
   FirebaseDatabase,
   FirestoreDatabase,
-} from './refine-firebase-dataprovider/src';
+} from './providers/refine-firebase-dataprovider/src';
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
