@@ -21,7 +21,10 @@ const { useParams, Link } = routerProvider;
 export const PostList: React.FC = () => {
 
     const params = useParams();
-    const { dataGridProps } = useDataGrid<IPost>();
+    const { dataGridProps } = useDataGrid<IPost>({
+        syncWithLocation: true
+    });
+
 
     const categoryIds = dataGridProps.rows.map((item) => item.category.id);
 

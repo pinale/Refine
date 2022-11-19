@@ -52,7 +52,7 @@ export const CategoriesList: React.FC = () => {
                     );
 
                     return (
-                        <Link to={`/posts/${row.id}`}>
+                        <Link to={`/posts?filters[0][field]=category.id&filters[0][operator]=eq&filters[0][value]=${row.id}`}>
                             <TagField value={filteredPosts?.length} />
                         </Link>
                     ); 
