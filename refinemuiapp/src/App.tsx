@@ -36,6 +36,7 @@ function App() {
           Layout={Layout}
           ReadyPage={ReadyPage}
           catchAll={<ErrorComponent />}
+          //options={{ syncWithLocation: true }}
           routerProvider={{
             ...routerProvider,
             routes: [

@@ -485,3 +485,42 @@ export const CategoriesList: React.FC = () => {
                 ...
             },
 ```
+
+### SYNK GRID FILTERS WITH URL TO SET FILTER CRITERIA AUTOMATICALLY
+using a link like this
+```TSX
+    ...
+    renderCell: function render({ row }) {
+                        
+        if (isLoading) {
+        return 'Loading...';
+        }
+        
+        return (
+            <Link to={`/posts?filters[0][field]=category.id&filters[0][operator]=eq&filters[0][value]=${row.id}`}>
+                <TagField value={row.title} />
+            </Link>
+        ); 
+    },
+    ...
+```
+
+you can automatically set filters on a grid if `syncWithLocation` is set on the `useDataGrid` hook:
+```TSX
+    const { dataGridProps } = useDataGrid<IPost>({
+        syncWithLocation: true
+    });
+```
+
+`syncWithLocation` can also be globally enabled if it setted at the <Refine> level:
+```TSX
+    <Refine
+          ...
+          options={{ syncWithLocation: true }}
+          ...
+    />
+```
+
+make an example with: `createLinkForSyncWithLocation`
+
+
