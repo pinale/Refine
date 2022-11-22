@@ -1,5 +1,5 @@
 import React from "react";
-import { useMany } from "@pankod/refine-core";
+import { CrudFilter, ConditionalFilter, LogicalFilter, useMany } from "@pankod/refine-core";
 import {
     useDataGrid,
     DataGrid,
@@ -21,8 +21,9 @@ const { useParams, Link } = routerProvider;
 export const PostList: React.FC = () => {
 
     const params = useParams();
-    const { dataGridProps } = useDataGrid<IPost>({
-        syncWithLocation: true
+    const { dataGridProps, filters, setFilters } = useDataGrid<IPost>({
+        syncWithLocation: true,
+        defaultSetFilterBehavior: "merge"
     });
 
 
@@ -95,6 +96,32 @@ export const PostList: React.FC = () => {
 
     return (
         <List>
+            <div className="flex flex-row">
+                {
+                    filters.map((f : CrudFilter  ) => {
+                       //return  (<div>{`${f.field} | ${f.operator} | ${f.value}`}</div>)) 
+                        
+                        // if (f as LogicalFilter)
+                        // {
+                        //     console.log("logical filter");
+                        // }
+
+                        // if (f as ConditionalFilter)
+                        // {
+                        //     console.log("conditional filter");
+                        // }
+
+
+                       //this type checking works only with classes, not with interfaces or types 
+                       //f instanceof LogicalFilter;
+                       return (
+                                <div>
+                                    {`${(f as LogicalFilter).field} | ${f.operator} | ${f.value}`}
+                                </div>
+                            )
+                    })
+                }
+            </div>
             <DataGrid {...dataGridProps} columns={columns} autoHeight />
         </List>
     );
