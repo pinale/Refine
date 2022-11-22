@@ -508,7 +508,8 @@ using a link like this
 you can automatically set filters on a grid if `syncWithLocation` is set on the `useDataGrid` hook:
 ```TSX
     const { dataGridProps } = useDataGrid<IPost>({
-        syncWithLocation: true
+        syncWithLocation: true,            //<-- where the magic happens
+        defaultSetFilterBehavior: "merge"  //<-- enable multifilter  
     });
 ```
 
