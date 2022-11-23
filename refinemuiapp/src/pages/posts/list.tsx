@@ -11,6 +11,7 @@ import {
     Stack,
     EditButton,
     DeleteButton,
+    Chip,
 } from "@pankod/refine-mui";
 
 import { ICategory,IPost } from "interfaces";
@@ -94,9 +95,21 @@ export const PostList: React.FC = () => {
         [categoriesData, isLoading],
     );
 
+
+    const handleDelete = (chipToDelete: CrudFilter) => () => {
+        //https://refine.dev/docs/api-reference/core/hooks/useTable/#filtering
+
+        setFilters(prev => prev.filter(filter => (filter as LogicalFilter).field !== (chipToDelete as LogicalFilter).field))
+        
+        //chipToDelete.value = undefined;
+        //setFilters([chipToDelete, "merge"]);
+    };
+
+
     return (
         <List>
             <div className="flex flex-row">
+            <Stack direction="row" spacing={1}>
                 {
                     filters.map((f : CrudFilter  ) => {
                        //return  (<div>{`${f.field} | ${f.operator} | ${f.value}`}</div>)) 
@@ -114,13 +127,16 @@ export const PostList: React.FC = () => {
 
                        //this type checking works only with classes, not with interfaces or types 
                        //f instanceof LogicalFilter;
-                       return (
-                                <div>
-                                    {`${(f as LogicalFilter).field} | ${f.operator} | ${f.value}`}
-                                </div>
-                            )
+                       
+                      
+
+                       //const sOperator =  ${f.operator} 
+                       return ( 
+                        <Chip label={`${(f as LogicalFilter).field} | ${f.operator} | ${f.value}`} color="success"  onDelete={handleDelete(f)} />
+                       )
                     })
                 }
+                </Stack>
             </div>
             <DataGrid {...dataGridProps} columns={columns} autoHeight />
         </List>
