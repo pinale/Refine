@@ -1,5 +1,5 @@
 import React from "react";
-import { CrudFilter, ConditionalFilter, LogicalFilter, useMany } from "@pankod/refine-core";
+import { CrudFilter, ConditionalFilter, LogicalFilter, useMany, CrudFilters } from "@pankod/refine-core";
 import {
     useDataGrid,
     DataGrid,
@@ -11,8 +11,13 @@ import {
     Stack,
     EditButton,
     DeleteButton,
-    Chip,
+    color,
+    //Chip,
 } from "@pankod/refine-mui";
+
+import Chip from '@mui/material/Chip';
+
+import DeleteIcon from '@mui/icons-material/Delete';
 
 import { ICategory,IPost } from "interfaces";
 
@@ -100,20 +105,24 @@ export const PostList: React.FC = () => {
         //https://refine.dev/docs/api-reference/core/hooks/useTable/#filtering
 
         setFilters(prev => prev.filter(filter => (filter as LogicalFilter).field !== (chipToDelete as LogicalFilter).field))
-        
+
         //chipToDelete.value = undefined;
         //setFilters([chipToDelete, "merge"]);
+    };
+
+    const handleRemoveAllFilters = () => {
+        setFilters(_ => [] as CrudFilter[])
     };
 
 
     return (
         <List>
             <div className="flex flex-row">
-            <Stack direction="row" spacing={1}>
+            <Stack direction="row" spacing={1} style={{"paddingBottom" : "16px"}}>
                 {
                     filters.map((f : CrudFilter  ) => {
-                       //return  (<div>{`${f.field} | ${f.operator} | ${f.value}`}</div>)) 
-                        
+                       //return  (<div>{`${f.field} | ${f.operator} | ${f.value}`}</div>))
+
                         // if (f as LogicalFilter)
                         // {
                         //     console.log("logical filter");
@@ -125,16 +134,19 @@ export const PostList: React.FC = () => {
                         // }
 
 
-                       //this type checking works only with classes, not with interfaces or types 
+                       //this type checking works only with classes, not with interfaces or types
                        //f instanceof LogicalFilter;
-                       
-                      
 
-                       //const sOperator =  ${f.operator} 
-                       return ( 
+
+
+                       //const sOperator =  ${f.operator}
+                       return (
                         <Chip label={`${(f as LogicalFilter).field} | ${f.operator} | ${f.value}`} color="success"  onDelete={handleDelete(f)} />
                        )
                     })
+                }
+                {
+                    !!filters.length && (<Chip label="Delete filters" color="error" icon={<DeleteIcon />} onClick={handleRemoveAllFilters} variant="outlined"  />)
                 }
                 </Stack>
             </div>
