@@ -525,3 +525,8 @@ you can automatically set filters on a grid if `syncWithLocation` is set on the 
 make an example with: `createLinkForSyncWithLocation`
 
 
+### Automatic views - Inference
+
+```bash
+npm i @pankod/refine-inferencer
+```

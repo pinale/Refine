@@ -13,6 +13,13 @@ import {
   ErrorComponent,
 } from "@pankod/refine-mui";
 
+import {
+  MuiListInferencer,
+  MuiShowInferencer,
+  MuiCreateInferencer,
+  MuiEditInferencer,
+} from "@pankod/refine-inferencer/mui";
+
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
 import { PostCreate, PostEdit, PostList, PostShow } from "pages/posts";
@@ -22,6 +29,9 @@ import { MyCustomHeader } from "components/layout/mycustomheader";
 import { CategoriesList } from "pages/categories/list";
 import { CustomPage1 } from "pages/custom/custompage1";
 import { CustomPage2 } from "pages/custom/custompage2";
+import { MyCustomSider } from "components/layout/mycustomsider";
+
+
 
 
 function App() {
@@ -70,8 +80,18 @@ function App() {
               //create: PostCreate,
               //canDelete: true
             },
+            {
+              name:"inferences",
+              list: MuiListInferencer,
+              show: MuiShowInferencer,
+              edit: MuiEditInferencer,
+              create: MuiCreateInferencer,
+              canDelete: true,
+              options: { label: 'Inference with Inferencer'} //can overwrite the title
+            },
           ]}
           Header={MyCustomHeader}
+          //Sider={MyCustomSider}
           LoginPage={Login}
         />
       </RefineSnackbarProvider>
