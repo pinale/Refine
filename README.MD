@@ -19,6 +19,10 @@ preconfigured with sensible defaults:\
 `npx superplate-cli -o refine-antd tutorial`\
 ...
 
+Whenever there is a Refine update you can issue
+`npm run refine update` or `npx @pankod/refine-cli update` to update involved packages
+
+
 ## GitPod
  https://www.gitpod.io/guides/gitpodify
  https://www.gitpod.io/docs/references/gitpod-yml
